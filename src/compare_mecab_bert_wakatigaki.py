@@ -1,11 +1,11 @@
 # coding=utf-8
-from transformers import BertJapaneseTokenizer, BertForMaskedLM
+import click
 import MeCab
+from transformers import BertJapaneseTokenizer, BertForMaskedLM
 
-
-def main():
-    text = 'テレビでサッカーの試合を見る。'
-
+@click.command()
+@click.option('--text', '-t', default='')
+def main(text):
     tokenizer = BertJapaneseTokenizer.from_pretrained('bert-base-japanese-whole-word-masking')
     tokenized_text = tokenizer.tokenize(text)
     print('bert  wakatigaki:{}'.format(tokenized_text))
